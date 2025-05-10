@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OkooraProjectFetcher.BackgroundServices;
-using OkooraProjectFetcher.Services;
 
 namespace OkooraProjectFetcher.Controllers
 {
@@ -19,11 +18,11 @@ namespace OkooraProjectFetcher.Controllers
         [Route("rate")]
         public IActionResult GetLatestRate()
         {
-            var rate = _backgroundService.GetLatestRate();
-            if (rate == null)
+            var package = _backgroundService.GetLatestPackage();
+            if (package == null)
                 return BadRequest("Exchange rate not available yet.");
 
-            return Ok(rate);
+            return Ok(package);
         }
     }
 }

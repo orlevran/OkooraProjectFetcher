@@ -1,14 +1,8 @@
-using System;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
-using HtmlAgilityPack;
 using OkooraProjectFetcher.BackgroundServices;
-using OkooraProjectFetcher.Controllers;
 using OkooraProjectFetcher.Services;
 internal class Program
 {
-    public static async Task Main(string[] args)
+    public static Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -26,5 +20,6 @@ internal class Program
 
         // Run web server
         app.Run();
+        return Task.CompletedTask;
     }
 }

@@ -5,6 +5,9 @@ namespace OkooraProjectFetcher.Services
 {
     public class ExchangeRateMongoRepository
     {
+        // Singleton Pattern
+        private static ExchangeRateMongoRepository? instance;
+
         private readonly IMongoCollection<ExchangePackage> collection;
 
         public ExchangeRateMongoRepository(IConfiguration configuration)
@@ -16,6 +19,15 @@ namespace OkooraProjectFetcher.Services
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(databaseName);
             collection = database.GetCollection<ExchangePackage>(collectionName);
+        }
+
+        public static ExchangeRateMongoRepository GetInstance(IConfiguration configuration)
+        {
+            if (instance == null)
+            {
+                instance = new ExchangeRateMongoRepository(configuration);
+            }
+            return instance;
         }
 
         public async Task InsertAsync(ExchangePackage package)

@@ -14,9 +14,6 @@ namespace OkooraProjectFetcher.Models
         [BsonElement("Value")]
         public decimal Value { get; set; }
 
-        [BsonElement("LastUpdate")]
-        public DateTime LastUpdate { get; set; }
-
         public ExchangeRate(string fromCurrency, string toCurrency, decimal value)
         {
             FromCurrency = fromCurrency;
